@@ -1,0 +1,13 @@
+pwd -present working directory
+touch - create new file
+mv - rename files or directory name
+clear or cl - clear terminal
+mkdir - make a new directory
+cd - change directory back
+cd .. - move up to the parent directory
+ls - list all files & directories within current/pwd
+mv - move files or directories via name file name directory to move to.
+rm - delete a file or directory by its name
+code . - opens the folder/file up in vs code
+history - shows the terminal history of commands rename
+bash - use for either mac or pc. the session can be trashed if needed. And for git commands usage.
