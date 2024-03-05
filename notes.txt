@@ -1,0 +1,325 @@
+CREATE documents
+1 db.collectionName.insertOne({ "field": "value" });
+2 db.collectionName.insertMany([{"field": "value"}, {"field": "value"}]);
+
+READ documents
+1 - db.collectionName.find(); 
+    reads all documents in the collectionName
+2 - db.collectionName.find({ "field": "value" });
+    finds documents with specified fields and values
+3 - db.collectionName.find().limit(3);
+    limits the number of returned documents
+4 - db.collectionName.find().sort({ "field": 1 });
+    Sorts results in ascending (1) or descending (-1) order
+
+UPDATE documents
+1 - db.collectionName.updateOne({ "field": "value" }, { $set: { "field": "value" }});
+    update one document with the specified field and value
+2 - db.collectionName.updateMany({ "field": "value" }, { $set: { "field": "value" }});
+    updates multiple documents
+
+DELETE documents
+1 - db.collectionName.deleteOne({ "field": "value" });
+    deletes first instance of document
+2 - db.collectionName.deleteMany({ "field": "value" });
+    deletes all documents with the specified field and value
+3 - db.collectionName.deleteMany({});
+    deletes all the documents inside a collection
+
+COMPARISON Operators
+$eq = equal to
+$ne = not equal to
+$gt = greater than
+$lt = less than
+$gte = greater than or equal to
+
+LOGICAL Operators
+$and 
+$or
+-----------------------
+show dbs
+blogPost   72.00 KiB
+admin     336.00 KiB
+local       3.59 GiB
+use blogPost
+switched to db blogPost
+db.users.insertOne({"username": "ron_cabtuanda", "email": "ron@example.com", "age": 20, "status": "active"});
+{
+  acknowledged: true,
+  insertedId: ObjectId('65e6a7556f89310b0b786c91')
+}
+db.users.insertMany([{"username": "gary_walker", "email": "gary@example.com", "age": 25, "status": "active"}, {"username": "chris_new", "email": "chris@example.com", "age": 30, "status": "inactive"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('65e6a8c86f89310b0b786c92'),
+    '1': ObjectId('65e6a8c86f89310b0b786c93')
+  }
+}
+db.users.find();
+{
+  _id: ObjectId('65e69ab4c1dd940cc5193e0a'),
+  username: 'jane_smith',
+  email: 'jane@example.com',
+  age: 25,
+  status: 'active'
+}
+{
+  _id: ObjectId('65e69b16c1dd940cc5193e0b'),
+  username: 'kim_v',
+  email: 'kim@example.com',
+  age: 49,
+  status: 'active'
+}
+{
+  _id: ObjectId('65e69b91c1dd940cc5193e0c'),
+  username: 'mike_jones',
+  email: 'mike@example.com',
+  age: 35,
+  status: 'inactive'
+}
+{
+  _id: ObjectId('65e6a7556f89310b0b786c91'),
+  username: 'ron_cabatuanda',
+  email: 'ron@example.com',
+  age: 20,
+  status: 'active'
+}
+{
+  _id: ObjectId('65e6a8c86f89310b0b786c92'),
+  username: 'gary_walker',
+  email: 'gary@example.com',
+  age: 25,
+  status: 'active'
+}
+{
+  _id: ObjectId('65e6a8c86f89310b0b786c93'),
+  username: 'chris_new',
+  email: 'chris@example.com',
+  age: 30,
+  status: 'inactive'
+}
+db.users.find({"age": 30})
+{
+  _id: ObjectId('65e6a8c86f89310b0b786c93'),
+  username: 'chris_new',
+  email: 'chris@example.com',
+  age: 30,
+  status: 'inactive'
+}
+db.users.find().limit(3);
+{
+  _id: ObjectId('65e69ab4c1dd940cc5193e0a'),
+  username: 'jane_smith',
+  email: 'jane@example.com',
+  age: 25,
+  status: 'active'
+}
+{
+  _id: ObjectId('65e69b16c1dd940cc5193e0b'),
+  username: 'kim_v',
+  email: 'kim@example.com',
+  age: 49,
+  status: 'active'
+}
+{
+  _id: ObjectId('65e69b91c1dd940cc5193e0c'),
+  username: 'mike_jones',
+  email: 'mike@example.com',
+  age: 35,
+  status: 'inactive'
+}
+db.users.find({"status": "inactive"}).limit(2);
+{
+  _id: ObjectId('65e69b91c1dd940cc5193e0c'),
+  username: 'mike_jones',
+  email: 'mike@example.com',
+  age: 35,
+  status: 'inactive'
+}
+{
+  _id: ObjectId('65e6a8c86f89310b0b786c93'),
+  username: 'chris_new',
+  email: 'chris@example.com',
+  age: 30,
+  status: 'inactive'
+}
+db.users.find().sort({"username": 1})
+{
+  _id: ObjectId('65e6a8c86f89310b0b786c93'),
+  username: 'chris_new',
+  email: 'chris@example.com',
+  age: 30,
+  status: 'inactive'
+}
+{
+  _id: ObjectId('65e6a8c86f89310b0b786c92'),
+  username: 'gary_walker',
+  email: 'gary@example.com',
+  age: 25,
+  status: 'active'
+}
+{
+  _id: ObjectId('65e69ab4c1dd940cc5193e0a'),
+  username: 'jane_smith',
+  email: 'jane@example.com',
+  age: 25,
+  status: 'active'
+}
+{
+  _id: ObjectId('65e69b16c1dd940cc5193e0b'),
+  username: 'kim_v',
+  email: 'kim@example.com',
+  age: 49,
+  status: 'active'
+}
+{
+  _id: ObjectId('65e69b91c1dd940cc5193e0c'),
+  username: 'mike_jones',
+  email: 'mike@example.com',
+  age: 35,
+  status: 'inactive'
+}
+{
+  _id: ObjectId('65e6a7556f89310b0b786c91'),
+  username: 'ron_cabatuanda',
+  email: 'ron@example.com',
+  age: 20,
+  status: 'active'
+}
+db.users.find().sort({"username": -1})
+{
+  _id: ObjectId('65e6a7556f89310b0b786c91'),
+  username: 'ron_cabatuanda',
+  email: 'ron@example.com',
+  age: 20,
+  status: 'active'
+}
+{
+  _id: ObjectId('65e69b91c1dd940cc5193e0c'),
+  username: 'mike_jones',
+  email: 'mike@example.com',
+  age: 35,
+  status: 'inactive'
+}
+{
+  _id: ObjectId('65e69b16c1dd940cc5193e0b'),
+  username: 'kim_v',
+  email: 'kim@example.com',
+  age: 49,
+  status: 'active'
+}
+{
+  _id: ObjectId('65e69ab4c1dd940cc5193e0a'),
+  username: 'jane_smith',
+  email: 'jane@example.com',
+  age: 25,
+  status: 'active'
+}
+{
+  _id: ObjectId('65e6a8c86f89310b0b786c92'),
+  username: 'gary_walker',
+  email: 'gary@example.com',
+  age: 25,
+  status: 'active'
+}
+{
+  _id: ObjectId('65e6a8c86f89310b0b786c93'),
+  username: 'chris_new',
+  email: 'chris@example.com',
+  age: 30,
+  status: 'inactive'
+}
+db.users.updateOne({"username": "jane_smith", {$set: "status": "active", "age": 26}})
+SyntaxError: Unexpected token (1:46)
+
+> 1 | db.users.updateOne({"username": "jane_smith", {$set: "status": "active", "age": 26}})
+    |                                               ^
+db.users.updateOne({ "username": "jane_smith" }, { $set: { "status": "active", "age": 26 }});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.users.deleteOne({"username": "mike_jones"});
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.users.find({ "age": { $eq: 20 }});
+{
+  _id: ObjectId('65e6a7556f89310b0b786c91'),
+  username: 'ron_cabatuando',
+  email: 'ron@example.com',
+  age: 20,
+  status: 'active'
+}
+db.users.find({ $and: [ { "status": "active" }, { "age": { $gte: 18 }}]});
+{
+  _id: ObjectId('65e69ab4c1dd940cc5193e0a'),
+  username: 'jane_smith',
+  email: 'jane@example.com',
+  age: 26,
+  status: 'active'
+}
+{
+  _id: ObjectId('65e69b16c1dd940cc5193e0b'),
+  username: 'kim_v',
+  email: 'kim@example.com',
+  age: 49,
+  status: 'active'
+}
+{
+  _id: ObjectId('65e6a7556f89310b0b786c91'),
+  username: 'ron_cabatuando',
+  email: 'ron@example.com',
+  age: 20,
+  status: 'active'
+}
+{
+  _id: ObjectId('65e6a8c86f89310b0b786c92'),
+  username: 'gary_walker',
+  email: 'gary@example.com',
+  age: 25,
+  status: 'active'
+}
+db.users.find({ $or: [ { "status": "inactive" }, { "age": { $gte: 18 }}]});
+{
+  _id: ObjectId('65e69ab4c1dd940cc5193e0a'),
+  username: 'jane_smith',
+  email: 'jane@example.com',
+  age: 26,
+  status: 'active'
+}
+{
+  _id: ObjectId('65e69b16c1dd940cc5193e0b'),
+  username: 'kim_v',
+  email: 'kim@example.com',
+  age: 49,
+  status: 'active'
+}
+{
+  _id: ObjectId('65e6a7556f89310b0b786c91'),
+  username: 'ron_cabatuando',
+  email: 'ron@example.com',
+  age: 20,
+  status: 'active'
+}
+{
+  _id: ObjectId('65e6a8c86f89310b0b786c92'),
+  username: 'gary_walker',
+  email: 'gary@example.com',
+  age: 25,
+  status: 'active'
+}
+{
+  _id: ObjectId('65e6a8c86f89310b0b786c93'),
+  username: 'chris_new',
+  email: 'chris@example.com',
+  age: 30,
+  status: 'inactive'
+}
+
+
